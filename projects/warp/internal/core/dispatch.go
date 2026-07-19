@@ -62,7 +62,9 @@ func Dispatch(method string, request []byte, host HostBridge) (json.RawMessage, 
 		return executorIdentifier()
 	case pluginabi.MethodExecutorExecute:
 		return handleExecute(request)
-	// executor.execute_stream / count_tokens / http_request added in later tasks.
+	case pluginabi.MethodExecutorExecuteStream:
+		return handleExecuteStream(request, host)
+	// executor.count_tokens / http_request added in Task 11.
 	default:
 		return nil, fmt.Errorf("unknown method %q", method)
 	}
