@@ -67,11 +67,17 @@ jobs:
           go build -trimpath -buildmode=c-shared -o "${{ steps.meta.outputs.artifact }}" .
           ( shasum -a 256 "${{ steps.meta.outputs.artifact }}" || sha256sum "${{ steps.meta.outputs.artifact }}" )
 
-      - name: Upload artifact to release
+      - name: Upload artifact to release (immutable — skip if it already exists)
         working-directory: projects/${{ steps.meta.outputs.plugin }}
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release upload "${{ steps.meta.outputs.tag }}" \
-            "${{ steps.meta.outputs.artifact }}" --clobber -R "${{ github.repository }}"
+          TAG="${{ steps.meta.outputs.tag }}"
+          ART="${{ steps.meta.outputs.artifact }}"
+          if gh release view "$TAG" -R "${{ github.repository }}" --json assets \
+               --jq '.assets[].name' | grep -qx "$ART"; then
+            echo "asset $ART already on $TAG — artifacts are immutable (pinned in registry.json), skipping"
+          else
+            gh release upload "$TAG" "$ART" -R "${{ github.repository }}"
+          fi

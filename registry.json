@@ -19,29 +19,29 @@
             "goos": "darwin",
             "goarch": "arm64",
             "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/opencode-go-v0.1.0/opencode-go-darwin-arm64.dylib",
-            "sha256": "eab24954de065e78e62af6797aff10454ec76050507ce6b9678d433ee3acb418",
-            "size": 4008802
+            "sha256": "f7f666b782ea3651934c4da208aba70f43db5b3275a1b740abb5f9696a2e6b44",
+            "size": 4008786
           },
           {
             "goos": "darwin",
             "goarch": "amd64",
             "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/opencode-go-v0.1.0/opencode-go-darwin-amd64.dylib",
-            "sha256": "ef0a36276cec40467273e945f557281c8d1629f96597968be4c27cc04907a059",
-            "size": 4285184
+            "sha256": "b7c4098d9d5d0e705cf1ed90c79ca672f26ae59e1590cf5132a336ef8ab9c6e8",
+            "size": 4285072
           },
           {
             "goos": "linux",
             "goarch": "arm64",
             "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/opencode-go-v0.1.0/opencode-go-linux-arm64.so",
-            "sha256": "dea0ea1e411fe0b87f91fbf4897f17d9c444b83c31f74b6363466af2a2c56654",
-            "size": 5672056
+            "sha256": "4941214d1a81d335249a16c906c2303bbd55d020265af8e26c0a56bdc2e06ad1",
+            "size": 5673440
           },
           {
             "goos": "linux",
             "goarch": "amd64",
             "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/opencode-go-v0.1.0/opencode-go-linux-amd64.so",
-            "sha256": "7dcfa6369a053e2f8f3ddcd70a6203cf767c8c0e19ad24b51ac730f30fabf58a",
-            "size": 6086336
+            "sha256": "37423765f8c4784e2eb0e95570ad6f11fa988c1fbb3a22a9a96850f52831b1d0",
+            "size": 6087568
           }
         ]
       }
