@@ -1,0 +1,19 @@
+{
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(go build:*)",
+      "Bash(go test:*)",
+      "Bash(go mod:*)",
+      "Bash(go env:*)",
+      "Bash(go vet:*)",
+      "Bash(gofmt:*)",
+      "Bash(nm:*)",
+      "Bash(file:*)",
+      "Bash(make:*)",
+      "Bash(cmake:*)"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+# Add this to your CLIProxyAPI config.yaml to load __PLUGIN_ID__.
+# The host scans <dir>/<GOOS>/<GOARCH>/__PLUGIN_ID__.<ext> first, then flat <dir>/.
+plugins:
+  enabled: true            # GLOBAL master switch — must be true or NOTHING loads
+  dir: "plugins"           # where the host looks for plugin shared libraries
+  configs:
+    __PLUGIN_ID__:         # key MUST equal the plugin id (filename without extension)
+      enabled: true        # per-plugin switch (does not flip plugins.enabled)
+      priority: 1          # higher wins on route/capability conflicts
+      enabled_note: "hello" # your own ConfigField(s), passed verbatim to plugin.register

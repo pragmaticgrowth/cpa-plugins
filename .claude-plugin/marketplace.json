@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "cpa-plugins",
+  "description": "Claude Code plugins for building CLIProxyAPI native plugins.",
+  "owner": {
+    "name": "PragmaticGrowth",
+    "url": "https://github.com/pragmaticgrowth"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "cpa",
+      "displayName": "CLIProxyAPI Plugin Builder",
+      "source": "./plugins/cpa",
+      "description": "Turns Claude Code into an expert CLIProxyAPI native-plugin builder: full awareness of the C-ABI plugin system and a scaffold/build/validate/wire/test workflow.",
+      "version": "0.1.0",
+      "category": "development",
+      "keywords": ["cliproxyapi", "cli-proxy-api", "plugin", "golang", "cgo", "proxy", "llm"]
+    }
+  ]
+}

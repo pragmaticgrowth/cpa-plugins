@@ -1,0 +1,15 @@
+CLIProxyAPI upstream — pinned reference snapshot
+================================================
+Repo:        https://github.com/router-for-me/CLIProxyAPI
+Tag:         v7.2.88
+Commit:      93d74a890a44802f656d7f39a573916b2611896e
+Docs repo:   https://github.com/router-for-me/CLIProxyAPIDocs
+Docs commit: 6002ea0dc24afa6efbd7b8f8462ff2085da85b18
+Snapshot:    2026-07-19
+
+Vendored files (curated ground-truth; do not edit by hand — run scripts/refresh-upstream.sh):
+  pluginapi-types.go            <- sdk/pluginapi/types.go
+  pluginabi-types.go            <- sdk/pluginabi/types.go
+  examples/*/go                 <- examples/plugin/*/go (all 21 capability examples)
+  examples/simple/{c,rust}      <- examples/plugin/simple/{c,rust}
+  docs-plugin/*.md              <- CLIProxyAPIDocs docs/en/plugin/*.md

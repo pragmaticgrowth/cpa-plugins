@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "cpa",
+  "displayName": "CLIProxyAPI Plugin Builder",
+  "version": "0.1.0",
+  "description": "Full awareness of the CLIProxyAPI native (C-ABI) plugin system — skills for the ABI, capabilities, lifecycle, and build/wire; plus /cpa scaffold, build, validate, wire, and test commands and a plugin-author subagent. Pinned to upstream v7.2.88.",
+  "author": {
+    "name": "PragmaticGrowth",
+    "url": "https://github.com/pragmaticgrowth"
+  },
+  "homepage": "https://github.com/pragmaticgrowth/cpa-plugins",
+  "repository": "https://github.com/pragmaticgrowth/cpa-plugins",
+  "license": "MIT",
+  "keywords": ["cliproxyapi", "cli-proxy-api", "plugin", "golang", "cgo", "c-abi", "proxy", "llm"]
+}
