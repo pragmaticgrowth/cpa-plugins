@@ -66,6 +66,27 @@
             "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/warp-v0.1.0/warp-darwin-arm64.dylib",
             "sha256": "25e4e8edf217397c1511c1a40b264ac7804c073f1566fa903cbb43a3500a093d",
             "size": 14720322
+          },
+          {
+            "goos": "darwin",
+            "goarch": "amd64",
+            "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/warp-v0.1.0/warp-darwin-amd64.dylib",
+            "sha256": "3be52634fba73e7f4aa39fea623893de1d179bed31b921ccc6670570580ef595",
+            "size": 15324864
+          },
+          {
+            "goos": "linux",
+            "goarch": "arm64",
+            "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/warp-v0.1.0/warp-linux-arm64.so",
+            "sha256": "3a341caa4edc5ae7771f3d8c9e43c22ae552e1c3325a7990958777c64e82d309",
+            "size": 19494976
+          },
+          {
+            "goos": "linux",
+            "goarch": "amd64",
+            "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/warp-v0.1.0/warp-linux-amd64.so",
+            "sha256": "7c56cdf4a48e5d500ab07131aae3abe0a326361167cf41f483d9991ad31fd67d",
+            "size": 20521136
           }
         ]
       }
