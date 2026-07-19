@@ -49,7 +49,12 @@ func Dispatch(method string, request []byte, host HostBridge) (json.RawMessage, 
 		return handleAuthLoginStart(request)
 	case pluginabi.MethodAuthLoginPoll:
 		return handleAuthLoginPoll(request)
-	// models / cli / executor cases are added in later tasks.
+
+	case pluginabi.MethodCommandLineRegister:
+		return handleCLIRegister(request)
+	case pluginabi.MethodCommandLineExecute:
+		return handleCLIExecute(request)
+	// models / executor cases are added in later tasks.
 	default:
 		return nil, fmt.Errorf("unknown method %q", method)
 	}
