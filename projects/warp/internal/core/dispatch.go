@@ -38,7 +38,18 @@ func Dispatch(method string, request []byte, host HostBridge) (json.RawMessage, 
 		return okEnvelope(json.RawMessage(reg))
 	case pluginabi.MethodPluginShutdown:
 		return okEnvelope(map[string]any{})
-	// auth / models / cli / executor cases are added in later tasks.
+
+	case pluginabi.MethodAuthIdentifier:
+		return authIdentifier()
+	case pluginabi.MethodAuthParse:
+		return handleAuthParse(request)
+	case pluginabi.MethodAuthRefresh:
+		return handleAuthRefresh(request)
+	case pluginabi.MethodAuthLoginStart:
+		return handleAuthLoginStart(request)
+	case pluginabi.MethodAuthLoginPoll:
+		return handleAuthLoginPoll(request)
+	// models / cli / executor cases are added in later tasks.
 	default:
 		return nil, fmt.Errorf("unknown method %q", method)
 	}
