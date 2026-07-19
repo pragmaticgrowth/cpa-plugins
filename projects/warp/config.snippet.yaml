@@ -1,0 +1,13 @@
+plugins:
+  enabled: true
+  dir: "plugins"
+  configs:
+    warp:
+      enabled: true
+      priority: 10
+      use_warp_credits: true                              # -> allow_use_of_warp_credits
+      model_prefix: "warp/"
+      client_version: "v0.2025.08.06.08.12.stable_02"     # override when Warp bumps it
+      os_category: "Windows"                              # x-warp-os-* triad
+      os_name: "Windows"
+      os_version: "11 (26100)"
