@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginabi"
+	"github.com/router-for-me/CLIProxyAPI/v7/sdk/pluginapi"
 )
 
 // HostBridge is the subset of host callbacks the plugin needs. main.go provides
@@ -64,7 +65,11 @@ func Dispatch(method string, request []byte, host HostBridge) (json.RawMessage, 
 		return handleExecute(request)
 	case pluginabi.MethodExecutorExecuteStream:
 		return handleExecuteStream(request, host)
-	// executor.count_tokens / http_request added in Task 11.
+	case pluginabi.MethodExecutorCountTokens:
+		return handleCountTokens(request)
+	case pluginabi.MethodExecutorHTTPRequest:
+		return okEnvelope(pluginapi.ExecutorResponse{}) // v1 no-op
+
 	default:
 		return nil, fmt.Errorf("unknown method %q", method)
 	}

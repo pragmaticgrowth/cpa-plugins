@@ -118,3 +118,22 @@ func handleExecute(request []byte) (json.RawMessage, error) {
 		Headers: http.Header{"Content-Type": []string{"application/json"}},
 	})
 }
+
+// handleCountTokens returns a rough char/4 estimate. v1 does not call Warp for
+// an exact count; documented as a v2 improvement.
+func handleCountTokens(request []byte) (json.RawMessage, error) {
+	var er pluginapi.ExecutorRequest
+	if err := json.Unmarshal(request, &er); err != nil {
+		return nil, err
+	}
+	cr, err := parseChatRequest(er.Payload)
+	if err != nil {
+		return okEnvelope(pluginapi.ExecutorResponse{Payload: []byte(`{"input_tokens":0}`)})
+	}
+	total := 0
+	for _, m := range cr.Messages {
+		total += len(m.Content)/4 + 1
+	}
+	body, _ := json.Marshal(map[string]int{"input_tokens": total})
+	return okEnvelope(pluginapi.ExecutorResponse{Payload: body})
+}

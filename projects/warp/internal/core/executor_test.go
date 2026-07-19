@@ -106,3 +106,32 @@ func TestExecute_QuotaError(t *testing.T) {
 		t.Fatal("expected quota error")
 	}
 }
+
+func TestCountTokens_Estimates(t *testing.T) {
+	er := map[string]any{"Payload": []byte(`{"messages":[{"role":"user","content":"abcdefgh"}]}`)}
+	raw, _ := json.Marshal(er)
+	out, err := Dispatch(pluginabi.MethodExecutorCountTokens, raw, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var resp pluginapi.ExecutorResponse
+	unwrapResult(t, out, &resp)
+	var counts struct {
+		InputTokens int `json:"input_tokens"`
+	}
+	if err := json.Unmarshal(resp.Payload, &counts); err != nil {
+		t.Fatalf("bad count payload: %v (%s)", err, resp.Payload)
+	}
+	if counts.InputTokens <= 0 {
+		t.Fatalf("expected positive estimate, got %d", counts.InputTokens)
+	}
+}
+
+func TestHTTPRequest_NoOp(t *testing.T) {
+	out, err := Dispatch(pluginabi.MethodExecutorHTTPRequest, []byte(`{}`), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var resp pluginapi.ExecutorResponse
+	unwrapResult(t, out, &resp)
+}
