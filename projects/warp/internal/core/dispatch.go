@@ -57,7 +57,12 @@ func Dispatch(method string, request []byte, host HostBridge) (json.RawMessage, 
 
 	case pluginabi.MethodModelRegister:
 		return handleModelRegister(request)
-	// executor cases are added in later tasks.
+
+	case pluginabi.MethodExecutorIdentifier:
+		return executorIdentifier()
+	case pluginabi.MethodExecutorExecute:
+		return handleExecute(request)
+	// executor.execute_stream / count_tokens / http_request added in later tasks.
 	default:
 		return nil, fmt.Errorf("unknown method %q", method)
 	}
