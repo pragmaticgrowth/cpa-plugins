@@ -24,6 +24,30 @@
           }
         ]
       }
+    },
+    {
+      "id": "warp",
+      "name": "Warp AI",
+      "description": "Warp AI provider for CLIProxyAPI. Spend your Warp subscription credits (Claude, GPT, Gemini, and Fireworks-hosted models) from any entry protocol. Declares auth_provider + executor + model_registrar + command_line_plugin; bridges Warp's protobuf-over-HTTP/2 backend (app.warp.dev/ai/multi-agent) to chat-completions. Firebase-OAuth credential (refresh token) imported via `--warp-login`. Unofficial, unsupported integration.",
+      "author": "pragmaticgrowth",
+      "version": "0.1.0",
+      "repository": "https://github.com/pragmaticgrowth/cpa-plugins",
+      "homepage": "https://github.com/pragmaticgrowth/cpa-plugins/tree/main/projects/warp",
+      "license": "AGPL-3.0",
+      "tags": ["provider", "warp", "chat-completions", "protobuf", "oauth", "claude", "gpt", "gemini"],
+      "auth_required": true,
+      "install": {
+        "type": "direct",
+        "artifacts": [
+          {
+            "goos": "darwin",
+            "goarch": "arm64",
+            "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/warp-v0.1.0/warp-darwin-arm64.dylib",
+            "sha256": "25e4e8edf217397c1511c1a40b264ac7804c073f1566fa903cbb43a3500a093d",
+            "size": 14720322
+          }
+        ]
+      }
     }
   ]
 }
