@@ -4,7 +4,11 @@ A Claude Code **marketplace repo**. Its one plugin, `cpa` ("CLIProxyAPI Plugin B
 
 ## What this repo is (and isn't)
 - **Is:** a Claude Code plugin + marketplace. The product is the `cpa` plugin in `plugins/cpa/`.
-- **Isn't (yet):** a home for actual CLIProxyAPI provider/translator plugins — those get built in *consuming* projects using this plugin. `templates/go-plugin/` is the scaffold, not a shipped plugin.
+- **Also hosts real plugins:** `projects/<plugin-id>/` holds actual CLIProxyAPI
+  provider/translator plugins built with this tooling (owner decision 2026-07-19 —
+  all plugins live in-repo, not in split consuming projects). First one:
+  `projects/opencode-go/` (OpenCode Go provider). `templates/go-plugin/` remains
+  the scaffold.
 
 ## Structure
 - `.claude-plugin/marketplace.json` — catalog (single plugin `cpa`).
@@ -15,6 +19,8 @@ A Claude Code **marketplace repo**. Its one plugin, `cpa` ("CLIProxyAPI Plugin B
 - `plugins/cpa/templates/go-plugin/` — buildable Go scaffold. Placeholders (`__PLUGIN_ID__`, `__MODULE_PATH__`, `__AUTHOR__`, `__REPO_URL__`) appear **only inside string literals**, so the template compiles as-is.
 - `plugins/cpa/references/upstream/` — vendored ground-truth, pinned to upstream **v7.2.88**; regenerate with `scripts/refresh-upstream.sh`. Don't hand-edit.
 - `docs/superpowers/specs/` — the design spec.
+- `projects/<plugin-id>/` — real, buildable CLIProxyAPI plugins (own `go.mod`,
+  c-shared build). `projects/opencode-go/` is the OpenCode Go provider.
 
 ## Build toolchain (for building CLIProxyAPI plugins)
 - **Go 1.26+** (`/opt/homebrew/bin/go`) + CGO (Apple clang). Verified command:

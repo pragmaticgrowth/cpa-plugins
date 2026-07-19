@@ -1,0 +1,5 @@
+{
+  "type": "opencode-go",
+  "api_key": "sk-REPLACE_WITH_YOUR_OPENCODE_GO_API_KEY",
+  "base_url": "https://opencode.ai/zen/go/v1"
+}

@@ -1,0 +1,9 @@
+# Add to your CLIProxyAPI config.yaml to load the opencode-go plugin.
+# The host scans <dir>/<GOOS>/<GOARCH>/opencode-go.<ext> first, then flat <dir>/.
+plugins:
+  enabled: true            # GLOBAL master switch — must be true or nothing loads
+  dir: "plugins"           # where the host looks for plugin shared libraries
+  configs:
+    opencode-go:
+      enabled: true        # per-plugin switch
+      priority: 1
