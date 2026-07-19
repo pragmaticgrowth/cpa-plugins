@@ -1,0 +1,77 @@
+name: Release plugin artifacts
+
+# Trigger by pushing a tag like `opencode-go-v0.1.0` (i.e. <plugin-id>-v<version>).
+# Builds the CGO c-shared library for every supported platform and uploads each
+# artifact to the GitHub Release for that tag.
+on:
+  push:
+    tags:
+      - '*-v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag, e.g. opencode-go-v0.1.0'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+            goos: darwin
+            goarch: arm64
+            ext: dylib
+          - runner: macos-14
+            goos: darwin
+            goarch: amd64
+            ext: dylib
+          - runner: ubuntu-24.04
+            goos: linux
+            goarch: amd64
+            ext: so
+          - runner: ubuntu-24.04-arm
+            goos: linux
+            goarch: arm64
+            ext: so
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+
+      - name: Resolve plugin id and tag
+        id: meta
+        shell: bash
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          PLUGIN="${TAG%-v*}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "plugin=$PLUGIN" >> "$GITHUB_OUTPUT"
+          echo "artifact=${PLUGIN}-${{ matrix.goos }}-${{ matrix.goarch }}.${{ matrix.ext }}" >> "$GITHUB_OUTPUT"
+
+      - name: Build c-shared library
+        working-directory: projects/${{ steps.meta.outputs.plugin }}
+        shell: bash
+        env:
+          CGO_ENABLED: '1'
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          go build -trimpath -buildmode=c-shared -o "${{ steps.meta.outputs.artifact }}" .
+          ( shasum -a 256 "${{ steps.meta.outputs.artifact }}" || sha256sum "${{ steps.meta.outputs.artifact }}" )
+
+      - name: Upload artifact to release
+        working-directory: projects/${{ steps.meta.outputs.plugin }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ steps.meta.outputs.tag }}" \
+            "${{ steps.meta.outputs.artifact }}" --clobber -R "${{ github.repository }}"
