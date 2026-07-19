@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "plugins": [
+    {
+      "id": "opencode-go",
+      "name": "OpenCode Go",
+      "description": "OpenCode Go provider for CLIProxyAPI. Serves the 22 low-cost OpenCode Go coding models (kimi, grok, deepseek, glm, minimax, qwen, mimo, hy3) using an OpenCode Go API key. Declares auth_provider + model_provider; upstream calls ride the host's built-in OpenAI-compatible executor.",
+      "author": "pragmaticgrowth",
+      "version": "0.1.0",
+      "repository": "https://github.com/pragmaticgrowth/cpa-plugins",
+      "homepage": "https://github.com/pragmaticgrowth/cpa-plugins/tree/main/projects/opencode-go",
+      "license": "MIT",
+      "tags": ["provider", "openai-compatible", "opencode", "opencode-go", "coding"],
+      "auth_required": true,
+      "install": {
+        "type": "direct",
+        "artifacts": [
+          {
+            "goos": "darwin",
+            "goarch": "arm64",
+            "url": "https://github.com/pragmaticgrowth/cpa-plugins/releases/download/opencode-go-v0.1.0/opencode-go-darwin-arm64.dylib",
+            "sha256": "eab24954de065e78e62af6797aff10454ec76050507ce6b9678d433ee3acb418",
+            "size": 4008802
+          }
+        ]
+      }
+    }
+  ]
+}
